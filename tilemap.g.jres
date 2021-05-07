@@ -1,0 +1,39 @@
+{
+    "transparency16": {
+        "data": "hwQQABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "tilemapTile": true
+    },
+    "level1": {
+        "id": "level1",
+        "mimeType": "application/mkcd-tilemap",
+        "data": "MTAxMDAwMTAwMDAxMDgwODA4MDgwODA4MDgwODA0MDAxMjAwMDAwMDAwMDUwOTA5MDkwOTA5MDkwOTA5MDcwMDAwMDAwMDAwMDAwNTA3MDgwNTA3MDYwOTBhMDkwNzAwMDAwMDAwMDYwMDAzMDIwOTA1MDcwOTA5MDkwOTA3MDAwMDA2MDYwMDAwMDUwOTA5MDUwNzBjMDkwOTA5MDcwMDA2MDAwMDAwMDAwNTA5MDkwNTA3MDkwMTBiMDMwNzAwMDAwMDAwMDAwMDA1MDkwOTA5MDcwMTA5MGEwOTAyMDUwMDAwMDAwMDEwMDUwOTA2MDYwMjA1MDkwOTAyMDcwNTAwMDAwNjAwMTEwNTA3MDgwODA4MDUwOTAyMDkwNzAzMDkwMDAwMDAwMDAzMDYwNjA2MDYwNjAyMDYwNjAyMDAwMzA5MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDMwNjAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAxMDAwMDAwMTAwMDAwMDAwMDAwMDAwMDAwMDAwMDYwNjBmMDAwNDA1MDcwMDAwMDAwMjAzMDAwMDAwMDAwMDAwMDAwMDA3MDUwNzAwMDAwMjBkMDAwMzA2MDYwMDAwMDAwMDBjMDIwMzBlMDAwMjAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAyMDAwMDAwMDAwMDAyMDAwMjAwMDAwMDAwMjIwMDIyMDIwMDAwMDAyMDAwMDAwMDAyMjAwMjAyMDAwMDAwMDAwMDIwMDAwMDAyMDAwMDAwMDAwMDAwMjAwMjIwMjAwMDIyMDIwMDIyMjIwMDAwMDAwMDAwMjAyMjIyMDIwMDIyMjIyMjIyMjIyMjIyMDAwMDAwMDAwMDAwMDAwMDAwMDAwMjAwMDAwMDAwMjAyMjIwMjIwMDIwMDIwMDAwMDAyMDIyMDAwMjIwMjIwMDAwMjAwMjIwMDAwMDAwMDAwMA==",
+        "tileset": [
+            "myTiles.transparency16",
+            "sprites.dungeon.darkGroundNorthWest0",
+            "sprites.dungeon.darkGroundSouthEast0",
+            "sprites.dungeon.darkGroundSouthWest0",
+            "sprites.dungeon.darkGroundNorthEast0",
+            "sprites.dungeon.darkGroundWest",
+            "sprites.dungeon.darkGroundSouth",
+            "sprites.dungeon.darkGroundEast",
+            "sprites.dungeon.darkGroundNorth",
+            "sprites.dungeon.darkGroundCenter",
+            "sprites.dungeon.darkGroundNorthWest1",
+            "sprites.dungeon.darkGroundNorthEast1",
+            "sprites.dungeon.collectibleInsignia",
+            "sprites.dungeon.collectibleRedCrystal",
+            "sprites.dungeon.collectibleBlueCrystal",
+            "sprites.dungeon.doorOpenEast",
+            "sprites.dungeon.chestClosed",
+            "sprites.dungeon.doorClosedNorth",
+            "sprites.dungeon.chestOpen"
+        ],
+        "displayName": "level1"
+    },
+    "*": {
+        "mimeType": "image/x-mkcd-f4",
+        "dataEncoding": "base64",
+        "namespace": "myTiles"
+    }
+}
