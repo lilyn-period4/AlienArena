@@ -1,15 +1,34 @@
+namespace SpriteKind {
+    export const Chests = SpriteKind.create()
+}
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Chests, function (sprite, otherSprite) {
+    if (sprite.overlapsWith(otherSprite)) {
+        info.changeLifeBy(1)
+        tiles.placeOnRandomTile(heartGainer, sprites.dungeon.chestClosed)
+    }
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.vy = -200
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    if (sprite.overlapsWith(otherSprite)) {
+        info.changeScoreBy(1)
+        tiles.placeOnRandomTile(LandEarth, sprites.castle.tileDarkGrass2)
+    }
+})
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestOpen, function (sprite, location) {
-    game.over(true)
+    if (info.score() < 10) {
+        game.over(false)
+    } else {
+        game.over(true)
+    }
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.collectibleInsignia, function (sprite, location) {
     music.magicWand.playUntilDone()
-    tiles.placeOnTile(mySprite, tiles.getTileLocation(0, 14))
+    tiles.placeOnTile(mySprite, tiles.getTileLocation(0, 13))
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    otherSprite.destroy()
+    otherSprite.destroy(effects.fire, 500)
     if (sprite.bottom < otherSprite.y) {
         sprite.vy = -100
     } else {
@@ -17,9 +36,16 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     }
 })
 let myEnemy: Sprite = null
+let heartGainer: Sprite = null
+let LandEarth: Sprite = null
 let mySprite: Sprite = null
 scene.setBackgroundColor(11)
 tiles.setTilemap(tilemap`level1`)
+game.splash("Welcome To Alien Arena")
+game.splash("Your Mission:")
+game.splash("gain enough food points to supply 25 people, one point per person")
+game.splash("You have 20 minutes")
+game.splash("Get going!")
 mySprite = sprites.create(img`
     ...................cc...
     ...............cccc63c..
@@ -39,13 +65,51 @@ mySprite = sprites.create(img`
     .........ccccccccc..ccc.
     `, SpriteKind.Player)
 controller.moveSprite(mySprite, 100, 0)
+LandEarth = sprites.create(img`
+    . . . . . . . . . . . . . . . . 
+    . . . . . . 6 6 6 6 . . . . . . 
+    . . . . 6 6 6 5 5 6 6 6 . . . . 
+    . . . 7 7 7 7 6 6 6 6 6 6 . . . 
+    . . 6 7 7 7 7 8 8 8 1 1 6 6 . . 
+    . . 7 7 7 7 7 8 8 8 1 1 5 6 . . 
+    . 6 7 7 7 7 8 8 8 8 8 5 5 6 6 . 
+    . 6 7 7 7 8 8 8 6 6 6 6 5 6 6 . 
+    . 6 6 7 7 8 8 6 6 6 6 6 6 6 6 . 
+    . 6 8 7 7 8 8 6 6 6 6 6 6 6 6 . 
+    . . 6 8 7 7 8 6 6 6 6 6 8 6 . . 
+    . . 6 8 8 7 8 8 6 6 6 8 6 6 . . 
+    . . . 6 8 8 8 8 8 8 8 8 6 . . . 
+    . . . . 6 6 8 8 8 8 6 6 . . . . 
+    . . . . . . 6 6 6 6 . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `, SpriteKind.Food)
+heartGainer = sprites.create(img`
+    . . b b b b b b b b b b b b . . 
+    . b e 4 4 4 4 4 4 4 4 4 4 e b . 
+    b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
+    b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
+    b e 4 4 4 4 4 4 4 4 4 4 4 4 e b 
+    b e e 4 4 4 4 4 4 4 4 4 4 e e b 
+    b e e e e e e e e e e e e e e b 
+    b e e e e e e e e e e e e e e b 
+    b b b b b b b d d b b b b b b b 
+    c b b b b b b c c b b b b b b c 
+    c c c c c c b c c b c c c c c c 
+    b e e e e e c b b c e e e e e b 
+    b e e e e e e e e e e e e e e b 
+    b c e e e e e e e e e e e e c b 
+    b b b b b b b b b b b b b b b b 
+    . b b . . . . . . . . . . b b . 
+    `, SpriteKind.Chests)
+tiles.placeOnRandomTile(LandEarth, sprites.castle.tileDarkGrass2)
 mySprite.setStayInScreen(true)
 info.setScore(0)
-info.setLife(4)
+info.setLife(5)
 mySprite.ay = 500
+tiles.placeOnRandomTile(heartGainer, sprites.dungeon.chestClosed)
 tiles.placeOnRandomTile(mySprite, sprites.dungeon.doorLockedSouth)
 scene.cameraFollowSprite(mySprite)
-for (let value of tiles.getTilesByType(sprites.dungeon.collectibleBlueCrystal)) {
+for (let value of tiles.getTilesByType(sprites.dungeon.greenOuterSouth0)) {
     myEnemy = sprites.create(img`
         ........................
         ........................
@@ -72,21 +136,22 @@ for (let value of tiles.getTilesByType(sprites.dungeon.collectibleBlueCrystal)) 
         ........................
         ........................
         `, SpriteKind.Enemy)
-    tiles.placeOnRandomTile(myEnemy, sprites.dungeon.greenOuterSouth0)
+    tiles.placeOnTile(myEnemy, value)
     myEnemy.follow(mySprite, 40)
 }
-game.onUpdate(function () {
-    for (let value of sprites.allOfKind(SpriteKind.Enemy)) {
-        if (value.isHittingTile(CollisionDirection.Bottom)) {
-            if (value.vx < 0 && value.tileKindAt(TileDirection.Left, sprites.dungeon.collectibleBlueCrystal)) {
-                value.vy = -150
-            } else if (value.vx < 0 && value.tileKindAt(TileDirection.Left, sprites.dungeon.collectibleBlueCrystal)) {
-                value.vy = -150
+info.startCountdown(120)
+game.onUpdateInterval(500, function () {
+    for (let value2 of sprites.allOfKind(SpriteKind.Enemy)) {
+        if (value2.isHittingTile(CollisionDirection.Bottom)) {
+            if (value2.vx < 0 && value2.tileKindAt(TileDirection.Left, sprites.dungeon.collectibleBlueCrystal)) {
+                value2.vy = -150
+            } else if (value2.vx < 0 && value2.tileKindAt(TileDirection.Left, sprites.dungeon.collectibleBlueCrystal)) {
+                value2.vy = -150
             }
-        } else if (value.isHittingTile(CollisionDirection.Left)) {
-            value.vx = 30
-        } else if (value.isHittingTile(CollisionDirection.Right)) {
-            value.vx = -30
+        } else if (value2.isHittingTile(CollisionDirection.Left)) {
+            value2.vx = 30
+        } else if (value2.isHittingTile(CollisionDirection.Right)) {
+            value2.vx = -30
         }
     }
 })
