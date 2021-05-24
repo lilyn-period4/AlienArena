@@ -3,7 +3,7 @@
 
 
 
-> Open this page at https://github.com/lilyn-period4/finalattempt
+> Open this page at https://makecode.com/_iDeKY8Whp5X4
 
 ## Use as Extension
 
